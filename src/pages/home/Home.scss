@@ -1,0 +1,125 @@
+.hero-scene {
+    background-color: #495E57;
+    padding: 20px;
+    /* Ajoute un peu d'espace autour */
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* Deux colonnes de taille égale */
+    gap: 20px;
+    /* Espacement entre les colonnes */
+    max-width: 1200px;
+    /* Largeur maximale */
+    margin: 0 auto;
+    /* Centrage horizontal */
+    align-items: center;
+    /* Alignement vertical */
+}
+
+.text-content {
+    color: white;
+}
+
+.text-content h1 {
+    color: #F4CE14;
+    margin-bottom: 10px;
+    /* Espacement sous le titre */
+}
+
+.text-content .location {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    /* Espacement sous la localisation */
+}
+
+.text-content p {
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.text-content button {
+    background-color: #F4CE14;
+    color: #495E57;
+    padding: 10px 20px;
+    /* Plus de padding pour un meilleur rendu */
+    border: none;
+    border-radius: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.text-content button:hover {
+    background-color: #e5bc12;
+    /* Couleur au survol */
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    /* Centre l'image horizontalement */
+}
+
+.image-container img {
+    max-width: 100%;
+    /* L'image ne dépasse pas sa colonne */
+    height: auto;
+    border-radius: 8px;
+    /* Ajoute un léger arrondi */
+}
+
+.container-specials {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 20px;
+    padding-bottom: 40px;
+}
+
+.container-specials .card {
+    width: 340px;
+    margin: 0 auto;
+    background-color: #ededed;
+    padding-bottom: 20px;
+}
+
+.title-specials {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Deux colonnes */
+    column-gap: 20px; /* Espacement de 20px entre les colonnes */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-inline: 25px;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+.title-specials h2 {
+    text-align: left;
+    margin: 0;
+}
+
+.title-specials button {
+    width: fit-content;
+    height: fit-content;
+}
+
+.title-specials .order-online {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.title-specials .order-online button {
+    background-color: #F4CE14;
+    color: #495E57;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
