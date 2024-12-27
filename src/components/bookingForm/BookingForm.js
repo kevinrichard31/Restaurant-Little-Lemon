@@ -1,39 +1,58 @@
 import './BookingForm.scss';
 import React, { useState } from 'react';
 
-function BookingForm(props) {
-  const [isComplete, setIsComplete] = useState(false);
-  const [date, setDate] = useState();
-  const [time, setTime] = useState();
-  const [guests, setGuests] = useState(0);
-  const [occasion, setOccasion] = useState();
+function BookingForm({ availableTimes, dispatch }) {
+  const [formData, setFormData] = useState({
+    date: '',
+    time: '',
+    guests: 1,
+    occasion: 'birthday'
+  });
 
-  const handleClickForm = () => {
-    console.log(date)
-    console.log(time)
-    console.log(guests)
-    console.log(occasion)
-  }
+  const handleDateChange = (e) => {
+    const newDate = e.target.value;
+    setFormData(prev => ({
+      ...prev,
+      date: newDate
+    }));
+    dispatch({ type: 'UPDATE_DATE', payload: newDate });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+  };
 
   return (
-    <div>
+    <>
       <h2>Booking Page</h2>
-      <div className='container-form'>
+      <form className='container-form' onSubmit={handleSubmit}>
         <div className='container-date'>
           <label htmlFor="date">Date :</label>
-          <input type="date" id="date" onChange={(e) => {setDate(e.target.value)}}/>
+          <input 
+            type="date" 
+            id="date" 
+            value={formData.date}
+            onChange={handleDateChange}
+            required
+          />
         </div>
 
         <div className='container-time'>
           <label htmlFor="time">Time :</label>
-          <select id="time" onChange={(e)=>setTime(e.target.value)}>
-            {props.availableTimes.map((time, index) => (
+          <select 
+            id="time" 
+            value={formData.time}
+            onChange={(e) => setFormData(prev => ({ ...prev, time: e.target.value }))}
+            required
+          >
+            <option value="">Select a time</option>
+            {availableTimes.map((time, index) => (
               <option key={index} value={time}>{time}</option>
             ))}
           </select>
         </div>
 
-        {/* Number of Guests */}
         <div className='container-guests'>
           <label htmlFor="guests">Number of Guests :</label>
           <input
@@ -41,27 +60,29 @@ function BookingForm(props) {
             id="guests"
             min="1"
             max="20"
-            defaultValue="1"
-            onChange={(e)=>setGuests(e.target.value)}
+            value={formData.guests}
+            onChange={(e) => setFormData(prev => ({ ...prev, guests: parseInt(e.target.value) }))}
+            required
           />
         </div>
 
-        {/* Occasion Selector */}
         <div className='container-occasion'>
           <label htmlFor="occasion">Occasion :</label>
-          <select id="occasion" onChange={(e)=>setOccasion(e.target.value)}>
+          <select 
+            id="occasion" 
+            value={formData.occasion}
+            onChange={(e) => setFormData(prev => ({ ...prev, occasion: e.target.value }))}
+            required
+          >
             <option value="birthday">Birthday</option>
             <option value="engagement">Engagement</option>
             <option value="anniversary">Anniversary</option>
           </select>
         </div>
 
-        <button onClick={handleClickForm}>Send form</button>
-      </div>
-
-
-      {/* Vous pouvez ajouter un formulaire ou un calendrier de réservation ici */}
-    </div>
+        <button type="submit">Submit Reservation</button>
+      </form>
+    </>
   );
 }
 
