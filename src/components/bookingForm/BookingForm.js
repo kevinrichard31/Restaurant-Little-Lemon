@@ -1,59 +1,64 @@
-import './BookingForm.scss';
+// BookingForm.js
 import React, { useState } from 'react';
+import './BookingForm.scss';
 
-function BookingForm({ availableTimes, dispatch }) {
+function BookingForm({ availableTimes, dispatch, submitForm }) {
   const [formData, setFormData] = useState({
     date: '',
     time: '',
     guests: 1,
-    occasion: 'birthday'
+    occasion: 'birthday',
   });
 
   const handleDateChange = (e) => {
     const newDate = e.target.value;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      date: newDate
+      date: newDate,
     }));
     dispatch({ type: 'UPDATE_DATE', payload: newDate });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    submitForm(formData); // Appel à la fonction submitForm
   };
 
   return (
     <>
-      <h2>Booking Page</h2>
-      <form className='container-form' onSubmit={handleSubmit}>
-        <div className='container-date'>
+      <h1>Booking Page</h1>
+      <form className="container-form" onSubmit={handleSubmit}>
+        <div className="container-date">
           <label htmlFor="date">Date :</label>
-          <input 
-            type="date" 
-            id="date" 
+          <input
+            type="date"
+            id="date"
             value={formData.date}
             onChange={handleDateChange}
             required
           />
         </div>
 
-        <div className='container-time'>
+        <div className="container-time">
           <label htmlFor="time">Time :</label>
-          <select 
-            id="time" 
+          <select
+            id="time"
             value={formData.time}
-            onChange={(e) => setFormData(prev => ({ ...prev, time: e.target.value }))}
+            onChange={(e) =>
+              setFormData((prev) => ({ ...prev, time: e.target.value }))
+            }
             required
           >
             <option value="">Select a time</option>
             {availableTimes.map((time, index) => (
-              <option key={index} value={time}>{time}</option>
+              <option key={index} value={time}>
+                {time}
+              </option>
             ))}
           </select>
         </div>
 
-        <div className='container-guests'>
+        <div className="container-guests">
           <label htmlFor="guests">Number of Guests :</label>
           <input
             type="number"
@@ -61,17 +66,24 @@ function BookingForm({ availableTimes, dispatch }) {
             min="1"
             max="20"
             value={formData.guests}
-            onChange={(e) => setFormData(prev => ({ ...prev, guests: parseInt(e.target.value) }))}
+            onChange={(e) =>
+              setFormData((prev) => ({
+                ...prev,
+                guests: parseInt(e.target.value, 10),
+              }))
+            }
             required
           />
         </div>
 
-        <div className='container-occasion'>
+        <div className="container-occasion">
           <label htmlFor="occasion">Occasion :</label>
-          <select 
-            id="occasion" 
+          <select
+            id="occasion"
             value={formData.occasion}
-            onChange={(e) => setFormData(prev => ({ ...prev, occasion: e.target.value }))}
+            onChange={(e) =>
+              setFormData((prev) => ({ ...prev, occasion: e.target.value }))
+            }
             required
           >
             <option value="birthday">Birthday</option>
