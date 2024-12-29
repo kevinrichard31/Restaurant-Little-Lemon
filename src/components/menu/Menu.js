@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 function Menu() {
   return (
-    <nav>
+    <nav id="menu">
       <div className="child-nav">
         <Link to="/">
           <img src="/logo.jpg" alt="Logo" />
@@ -12,10 +12,7 @@ function Menu() {
         </Link>
         <ul>
           <li>Home</li>
-          <li><Link to="/booking">About</Link></li>
           <li><Link to="/booking">Reservations</Link></li>
-          <li>Order online</li>
-          <li>Login</li>
         </ul>
       </div>
     </nav>

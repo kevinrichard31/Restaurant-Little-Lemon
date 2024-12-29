@@ -16,9 +16,12 @@ nav .child-nav {
     max-width: 1200px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     margin: 0 auto;
     padding-top: 1rem;
     padding-bottom: 1rem;
+    flex-wrap: wrap;
 }
 
+#menu img {
+    padding-left: 15px;
+}

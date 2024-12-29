@@ -6,17 +6,14 @@
 
 .container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    /* Deux colonnes de taille égale */
-    gap: 20px;
-    /* Espacement entre les colonnes */
-    max-width: 1200px;
-    /* Largeur maximale */
-    margin: 0 auto;
-    /* Centrage horizontal */
-    align-items: center;
-    /* Alignement vertical */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Crée des colonnes flexibles */
+    gap: 20px; /* Espacement entre les éléments */
+    max-width: 1200px; /* Largeur maximale */
+    margin: 0 auto; /* Centrage horizontal */
+    align-items: center; /* Alignement vertical */
 }
+
+
 
 .text-content {
     color: white;
