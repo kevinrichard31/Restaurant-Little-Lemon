@@ -1,99 +1,97 @@
-// BookingForm.js
-import React, { useState } from 'react';
+import React from 'react';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as yup from 'yup';
 import './BookingForm.scss';
 
+// Définir le schéma de validation Yup
+const bookingSchema = yup.object().shape({
+  date: yup.string().required('Date is required'),
+  time: yup.string().required('Time is required'),
+  guests: yup
+    .number()
+    .required('Number of guests is required')
+    .min(1, 'At least 1 guest is required')
+    .max(20, 'Maximum 20 guests allowed'),
+  occasion: yup.string().required('Occasion is required'),
+});
+
 function BookingForm({ availableTimes, dispatch, submitForm }) {
-  const [formData, setFormData] = useState({
-    date: '',
-    time: '',
-    guests: 1,
-    occasion: 'birthday',
-  });
-
-  const handleDateChange = (e) => {
-    const newDate = e.target.value;
-    setFormData((prev) => ({
-      ...prev,
-      date: newDate,
-    }));
-    dispatch({ type: 'UPDATE_DATE', payload: newDate });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    submitForm(formData); // Appel à la fonction submitForm
-  };
-
   return (
     <>
       <h1>Booking Page</h1>
-      <form className="container-form" onSubmit={handleSubmit}>
-        <div className="container-date">
-          <label htmlFor="date">Date :</label>
-          <input
-            type="date"
-            id="date"
-            value={formData.date}
-            onChange={handleDateChange}
-            required
-          />
-        </div>
+      <Formik
+        initialValues={{
+          date: '',
+          time: '',
+          guests: 1,
+          occasion: 'birthday',
+        }}
+        validationSchema={bookingSchema}
+        onSubmit={(values) => {
+          submitForm(values); // Appel à la fonction submitForm avec les données
+        }}
+      >
+        {({ setFieldValue, isValid, dirty }) => (
+          <Form className="container-form">
+            <div className="container-date">
+              <label htmlFor="date">Date :</label>
+              <Field
+                type="date"
+                id="date"
+                name="date"
+                onChange={(e) => {
+                  setFieldValue('date', e.target.value);
+                  dispatch({ type: 'UPDATE_DATE', payload: e.target.value });
+                }}
+              />
+              <ErrorMessage name="date" component="p" className="error" />
+            </div>
 
-        <div className="container-time">
-          <label htmlFor="time">Time :</label>
-          <select
-            id="time"
-            value={formData.time}
-            onChange={(e) =>
-              setFormData((prev) => ({ ...prev, time: e.target.value }))
-            }
-            required
-          >
-            <option value="">Select a time</option>
-            {availableTimes.map((time, index) => (
-              <option key={index} value={time}>
-                {time}
-              </option>
-            ))}
-          </select>
-        </div>
+            <div className="container-time">
+              <label htmlFor="time">Time :</label>
+              <Field as="select" id="time" name="time">
+                <option value="">Select a time</option>
+                {availableTimes.map((time, index) => (
+                  <option key={index} value={time}>
+                    {time}
+                  </option>
+                ))}
+              </Field>
+              <ErrorMessage name="time" component="p" className="error" />
+            </div>
 
-        <div className="container-guests">
-          <label htmlFor="guests">Number of Guests :</label>
-          <input
-            type="number"
-            id="guests"
-            min="1"
-            max="20"
-            value={formData.guests}
-            onChange={(e) =>
-              setFormData((prev) => ({
-                ...prev,
-                guests: parseInt(e.target.value, 10),
-              }))
-            }
-            required
-          />
-        </div>
+            <div className="container-guests">
+              <label htmlFor="guests">Number of Guests :</label>
+              <Field
+                type="number"
+                id="guests"
+                name="guests"
+                min="1"
+                max="20"
+              />
+              <ErrorMessage name="guests" component="p" className="error" />
+            </div>
 
-        <div className="container-occasion">
-          <label htmlFor="occasion">Occasion :</label>
-          <select
-            id="occasion"
-            value={formData.occasion}
-            onChange={(e) =>
-              setFormData((prev) => ({ ...prev, occasion: e.target.value }))
-            }
-            required
-          >
-            <option value="birthday">Birthday</option>
-            <option value="engagement">Engagement</option>
-            <option value="anniversary">Anniversary</option>
-          </select>
-        </div>
+            <div className="container-occasion">
+              <label htmlFor="occasion">Occasion :</label>
+              <Field as="select" id="occasion" name="occasion">
+                <option value="birthday">Birthday</option>
+                <option value="engagement">Engagement</option>
+                <option value="anniversary">Anniversary</option>
+              </Field>
+              <ErrorMessage name="occasion" component="p" className="error" />
+            </div>
 
-        <button type="submit">Submit Reservation</button>
-      </form>
+            <button 
+              type="submit"
+              id="btnsubmit" 
+              disabled={!isValid || !dirty} // Désactive le bouton si le formulaire est invalide ou non modifié
+            >
+              Submit Reservation
+            </button>
+          </Form>
+        )}
+      </Formik>
     </>
   );
 }
