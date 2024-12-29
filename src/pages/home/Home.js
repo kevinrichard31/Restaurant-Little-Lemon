@@ -36,7 +36,8 @@ function Home() {
               <h3>Greek salad</h3>
               <div className="price">15€</div>
               <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat ipsam voluptatem et recusandae debitis quas perferendis iste illo.</p>
-              <a href="#">Order a delivery</a>
+              <Link to="/booking">Order a delivery
+            </Link>
             </div>
           </div>
 
@@ -46,7 +47,8 @@ function Home() {
               <h3>Greek salad</h3>
               <div className="price">15€</div>
               <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat ipsam voluptatem et recusandae debitis quas perferendis iste illo.</p>
-              <a href="#">Order a delivery</a>
+              <Link to="/booking">Order a delivery
+            </Link>
             </div>
           </div>
 
@@ -56,7 +58,8 @@ function Home() {
               <h3>Greek salad</h3>
               <div className="price">15€</div>
               <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat ipsam voluptatem et recusandae debitis quas perferendis iste illo.</p>
-              <a href="#">Order a delivery</a>
+              <Link to="/booking">Order a delivery
+            </Link>
             </div>
           </div>
         </div>

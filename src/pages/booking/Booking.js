@@ -55,8 +55,6 @@ export const updateTimes = (state, action) => {
   return initializeTimes(); // Retourne les horaires par défaut si aucune condition n'est remplie
 };
 
-
-
 function Booking() {
   const [availableTimes, dispatch] = useReducer(updateTimes, [], initializeTimes);
   const navigate = useNavigate();
@@ -64,7 +62,8 @@ function Booking() {
   const submitForm = (formData) => {
     const success = submitAPI(formData); // Remplacez par la logique API
     if (success) {
-      navigate('/confirmation'); // Redirige vers la page de confirmation
+      // Passe les données de réservation à la page de confirmation via `state`
+      navigate('/confirmation', { state: formData });
     } else {
       console.error('Error: Form submission failed');
     }

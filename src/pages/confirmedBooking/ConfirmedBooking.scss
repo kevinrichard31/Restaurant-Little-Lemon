@@ -11,3 +11,19 @@
     }
   }
   
+
+.details {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+h2 {
+  font-size: 40px;
+}
+
+.container-details {
+  max-width: 600px;
+  margin: 0 auto;
+}

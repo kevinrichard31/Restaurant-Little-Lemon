@@ -39,17 +39,18 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
                 type="date"
                 id="date"
                 name="date"
+                aria-describedby="date-error"
                 onChange={(e) => {
                   setFieldValue('date', e.target.value);
                   dispatch({ type: 'UPDATE_DATE', payload: e.target.value });
                 }}
               />
-              <ErrorMessage name="date" component="p" className="error" />
+              <ErrorMessage name="date" component="p" className="error" id="date-error" />
             </div>
 
             <div className="container-time">
               <label htmlFor="time">Time :</label>
-              <Field as="select" id="time" name="time">
+              <Field as="select" id="time" name="time" aria-describedby="time-error">
                 <option value="">Select a time</option>
                 {availableTimes.map((time, index) => (
                   <option key={index} value={time}>
@@ -57,7 +58,7 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
                   </option>
                 ))}
               </Field>
-              <ErrorMessage name="time" component="p" className="error" />
+              <ErrorMessage name="time" component="p" className="error" id="time-error" />
             </div>
 
             <div className="container-guests">
@@ -68,24 +69,25 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
                 name="guests"
                 min="1"
                 max="20"
+                aria-describedby="guests-error"
               />
-              <ErrorMessage name="guests" component="p" className="error" />
+              <ErrorMessage name="guests" component="p" className="error" id="guests-error" />
             </div>
 
             <div className="container-occasion">
               <label htmlFor="occasion">Occasion :</label>
-              <Field as="select" id="occasion" name="occasion">
+              <Field as="select" id="occasion" name="occasion" aria-describedby="occasion-error">
                 <option value="birthday">Birthday</option>
                 <option value="engagement">Engagement</option>
                 <option value="anniversary">Anniversary</option>
               </Field>
-              <ErrorMessage name="occasion" component="p" className="error" />
+              <ErrorMessage name="occasion" component="p" className="error" id="occasion-error" />
             </div>
 
             <button 
               type="submit"
               id="btnsubmit" 
-              disabled={!isValid || !dirty} // Désactive le bouton si le formulaire est invalide ou non modifié
+              aria-disabled={!isValid || !dirty}
             >
               Submit Reservation
             </button>

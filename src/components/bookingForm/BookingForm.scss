@@ -15,4 +15,23 @@ input, select {
 .container-form {
     display: flex;
     flex-direction: column;
+    align-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+#btnsubmit {
+    background-color: #F4CE14;
+    color: #495E57;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 30px;
+}
+
+.error {
+    color: red;
 }
