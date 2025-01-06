@@ -15,7 +15,7 @@ Les tests unitaires suivants ont été mis en place avec Jest pour garantir le b
 ## Technologies utilisées
 
 - **Figma** : Outil de conception utilisé pour créer les maquettes wireframe et les prototypes interactifs du projet.
-  - Lien vers le [projet Figma Wireframe](https://www.figma.com/design/0gVFOW9B0Y9KPdzyq5b6mF/Capstone-Wireframe?node-id=0-1&t=7iFo9yoycKNUvjtf-1)
+  - Wireframe et Prototype [Figma](https://www.figma.com/design/0gVFOW9B0Y9KPdzyq5b6mF/Capstone-Wireframe?node-id=0-1&t=7iFo9yoycKNUvjtf-1)
 
 - **React.js** : Framework JavaScript utilisé pour le développement de l'interface utilisateur, facilitant la création d'applications web dynamiques et interactives.
 
