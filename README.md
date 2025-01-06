@@ -3,13 +3,14 @@
 Ce projet vise à simuler un site web fonctionnel pour un restaurant. L'accent a été mis sur la gestion des réservations de tables et la présentation d'une interface utilisateur moderne et conviviale. Le projet couvre les étapes de conception UI/UX, de prototypage, et de développement avec React.
 
 
-## Tests unitaires avec jest qui permettent de vérifié
-- Le titre et le formulaire s'affiche
-- Les horaires s'affichent
-- Vérifier que le selecteur de date s'affiche
-- vérifier que la mise à jour de la date ne renvoi pas un tableau vide des horaires
-vérifier que les données du formulaire ne pas envoyés si formulaire incorrect
+## Tests unitaires avec Jest
+Les tests unitaires suivants ont été mis en place avec Jest pour garantir le bon fonctionnement de l'application :
 
+- Vérification de l'affichage du titre et du formulaire.
+- Vérification de l'affichage des horaires disponibles.
+- Vérification de l'affichage du sélecteur de date.
+- Validation que la mise à jour de la date ne renvoie pas un tableau vide d'horaires.
+- Vérification que les données du formulaire ne sont pas envoyées si le formulaire est incorrect.
 
 ## Technologies utilisées
 
