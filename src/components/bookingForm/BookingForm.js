@@ -32,7 +32,7 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
         }}
       >
         {({ setFieldValue, isValid, dirty }) => (
-          <Form className="container-form">
+          <Form className="container-form" role="form">
             <div className="container-date">
               <label htmlFor="date">Date :</label>
               <Field
